@@ -1,4 +1,5 @@
-
+-- ejemplo de funciones 
+-- uso y creacion
 
 /*create FUNCTION agregar_dias(fecha date,dias int)
 RETURNS DATE 

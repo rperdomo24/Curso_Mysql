@@ -1,3 +1,4 @@
+-- sentencias de bases, tablas e insercion y modificacion de data en tablas
 DROP DATABASE IF EXISTS libreria_cf;
 CREATE DATABASE IF NOT EXISTS libreria_cf;
 

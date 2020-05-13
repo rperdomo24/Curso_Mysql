@@ -1,3 +1,6 @@
+-- Ejemplos de funciones de agregacion
+-- con sentencias multiples
+
 SELECT concat(nombre, ' ', apellido) as nombre_completo, " " as email, pais_origen from autores
 UNION
 SELECT  CONCAT(nombre, ' ', apellidos) as nombre_completo, email as email," " from usuarios;
