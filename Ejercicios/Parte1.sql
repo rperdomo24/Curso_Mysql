@@ -89,4 +89,66 @@ select If(stock > 5,'Disponible','disponible') from libros where libro_id = 1;
 select titulo, fecha_publicacion from libros order by fecha_publicacion desc;
 
 --AUTORES
---
+--Obtener el nombre de los autores cuya fecha de nacimiento sea posterior a 1950
+select * from autores where fecha_nacimiento > '1965-12-31';
+
+--Obtener la el nombre completo y la edad de todos los autores.
+select 
+concat(nombre,' ',apellido) as nombre_completo,
+(YEAR(curdate()) - Year(fecha_nacimiento)) as edad 
+from autores;
+
+--Obtener el nombre completo de todos los autores cuyo último libro publicado sea posterior al 2005
+select 
+concat(nombre,' ',apellido) as nombre_completo
+from autores
+where autor_id  IN
+(
+ select DISTINCT
+autor_id
+from libros 
+where  YEAR(fecha_publicacion) > 2005
+ORDER by  fecha_publicacion DESC
+);
+
+--Obtener el id de todos los escritores cuyas ventas en sus libros superen el promedio.
+
+set @promediolibros = round((select AVG(ventas) from libros)); --  281
+select 
+autor_id
+from autores
+where autor_id IN
+(
+    select DISTINCT autor_id from libros where ventas > @promediolibros
+); 
+
+--Obtener el id de todos los escritores cuyas ventas en sus libros sean mayores a cien mil ejemplares.
+set @promediolibros = round((select AVG(ventas) from libros)); --  281
+set @metaventas = 100000; --  281
+select 
+autor_id
+from autores
+where autor_id IN
+(
+    select DISTINCT autor_id from libros where ventas > @metaventas
+); 
+-- ejemplo para probar script
+update libros set ventas = (@metaventas + 1) where autor_id = 7
+
+--FUNCIONES
+--Crear una función la cual nos permita saber si un libro es candidato a préstamo o no.
+--Retornar “Disponible” si el libro posee por lo menos un ejemplar en stock, 
+--en caso contrario retornar “No disponible.”
+DELIMITER //
+create FUNCTION validar_Stock(id int)
+RETURNS varchar(100) CHARSET latin1
+BEGIN 
+SET @validate =
+(select IF(stock>0,'Disponible','No disponible') as Disponibilidad
+FROM libros
+where libro_id = id);
+RETURN @validate;
+END//
+DELIMITER ;
+
+select validar_stock(13);

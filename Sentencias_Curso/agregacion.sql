@@ -34,10 +34,10 @@ WHERE autor_id IN (
         )
 );
 
-Disponible 
+/*Disponible 
 No disponible
 mateo se encuentra 
-
+*/
 select IF(
     EXISTS(SELECT libro_id FROM libros where titulo = 'mateo'),
     'Disponible',

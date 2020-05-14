@@ -50,7 +50,8 @@ VALUES ('Roberto','Perdomo', 'M', '1994-12-15', 'El Salvador'),
        ('Josue', 'Perdomo','M', '1996-6-15', 'El Salvador'),
        ('Marco','Perdomo', 'M', '2004-5-15', 'El Salvador'),
        ('Sarid','Perdomo', 'F', '2000-12-15', 'El Salvador'),
-       ('Abigail','Perdomo', 'F', '1994-12-15', 'El Salvador');
+       ('Abigail','Perdomo', 'F', '1994-12-15', 'El Salvador'),
+       ('Peggy','Perdomo', 'F', '1955-12-15', 'El Salvador');
 
 
 INSERT INTO autores( nombre, apellido,seudonimo, genero, fecha_nacimiento, pais_origen)
@@ -67,7 +68,8 @@ INSERT INTO libros(autor_id, titulo,descripcion,paginas,fecha_publicacion)
                 (2, 'Levitco', 'libro santo', 200, '2015-9-2'),                
                 (3, 'Deuteronomio compresinva', 'libro para primer ciclo', 300, '2019-10-10'),
                 (4, 'Lenguaje', 'libro para primer ciclo', 300, '2019-10-10'),
-                (5, 'sociales ', 'libro para primer ciclo', 0, '2019-10-10');
+                (5, 'sociales ', 'libro para primer ciclo', 0, '2019-10-10'),
+                (7, 'sociales ', 'libro para primer ciclo', 0, '2005-10-10');
 
 SELECT * FROM autores;
 SELECT * FROM libros;
