@@ -83,4 +83,5 @@ from libros
     WHERE libros_usuarios.libro_id is not null
     and DATE(libros_usuarios.fecha_creacion) >= (curdate() - INTERVAL 7 day)
     group by libros_usuarios.libro_id
-    order by  total_prestamo desc;
+    order by  total_prestamo desc
+    limit 1;
