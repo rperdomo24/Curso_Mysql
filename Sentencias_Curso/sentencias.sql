@@ -41,7 +41,9 @@ fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 
 INSERT INTO usuarios (nombre,apellidos, username,email)
 values ('Roberto','Perdomo','rperdomo','rperdomo32@gmail.com'),
-        ('codi','facilito','codifacilito','ayuda@codifacilito.com');
+        ('codi','facilito','codifacilito','ayuda@codifacilito.com'),
+        ('Karen','Perdomo','kperdomo','kperdomo@gmail.com'),
+        ('sarid','perdomo','sperdomo','sperdomo@codifacilito.com');
 
 select * from usuarios;
 
@@ -74,3 +76,16 @@ INSERT INTO libros(autor_id, titulo,descripcion,paginas,fecha_publicacion)
 SELECT * FROM autores;
 SELECT * FROM libros;
 
+CREATE table libros_usuarios(
+        libro_id int unsigned not null,
+        usuario_id int unsigned not null,
+        foreign key (libro_id) REFERENCES libros(libro_id),
+        foreign key(usuario_id) references usuarios(usuario_id),
+        fecha_creacion datetime default CURRENT_TIMESTAMP
+);
+
+insert into libros_usuarios(libro_id,usuario_id)
+        values (1,1), (2,1),(3,1),
+                (3,3),(4,3),(5,3),
+                (11,2);
+                
